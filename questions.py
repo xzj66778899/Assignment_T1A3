@@ -8,25 +8,26 @@ price_question1=("What price do you prefer? Please enter the min and max price.(
 price_question2=("(enter 'quit' to exit, 'show' to show results)\nmax:\n")
 
 def get_type():
-    input(str(type_question))
+    return input(type_question)
 
 def get_brand():
-    input(str(brand_question))
+    return input(brand_question)
 
 def get_year_min():
-    input(str(year_question1))
+    return input(year_question1)
 
 def get_year_max():
-    input(str(year_question2))
+    return input(year_question2)
 
 def get_km_min():
-    input(str(km_question1))
+    return input(km_question1)
 
 def get_km_max():
-    input(str(km_question2))
+    return input(km_question2)
 
 def get_price_min():
-    input(str(price_question1))
+    return input(price_question1)
 
 def get_price_max():
-    input(str(price_question2))
+    return input(price_question2)
+
