@@ -1,9 +1,10 @@
 import csv
 
 # import csv data as dicts in a list
-stocklist=[]   
+stocklist=[] 
 wishlist=[]
 def csv_to_dirc():
+    stocklist.clear()
     with open('carlist.csv') as f:
         reader = csv.DictReader(f)
         for row in reader:
@@ -90,18 +91,27 @@ while flag==True:
         for key,value in i.items():
             print(key,":",value,)
 
+    in_wishlist=0
 # user decide to save, choose or select again.
     while True:
         answer=input("\nDo you want to:\n'save' or 'choose' any of the cars?\nor you can type 'quit' to exit, 'again' to choose car again,'look' to see wishlist\n")
         if answer=='save':
-            wishlist.extend(stocklist)
+            for i in range(n-1):
+                print(i+1,' ' ,end='')
+            wishlist.append(stocklist[int(input("which one you wanna save?\n"))-1])
             wishlist=[dict(t) for t in set([tuple(d.items()) for d in wishlist])] # remove potential duplicates 
             break
         elif answer=='choose':
             flag=0      
             break
         elif answer=='look':
-            print(wishlist)
+            in_wishlist=1
+            m=1
+            for i in wishlist: 
+                print(m,":")
+                m+=1
+                for key,value in i.items():
+                    print(key,":",value,)
             continue
         elif answer=='quit':
             exit()
@@ -111,22 +121,22 @@ while flag==True:
             print("Please enter valid answer!")
     continue
 
-number=[]
+
+if in_wishlist==False:   
+    for i in range(n-1):
+        print(i+1,' ' ,end='')
+    car_chosen=stocklist[int(input("which one you wanna choose?"))-1]
+
+if in_wishlist==True:
+    for i in range(m-1):
+        print(i+1,' ' ,end='')
+    car_chosen=wishlist[int(input("which one you wanna choose?"))-1]
+
+
+print(car_chosen)
 
 
 
-for i in range(n-1):
-    print(i+1,' ' ,end='')
-input("which one you wanna choose?")
-
-
-
-
-
-print(wishlist)
-
-
- 
 
 
 
