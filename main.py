@@ -53,8 +53,10 @@ print("G'day! Welcome to our 'Save Your Money' car seller!\nFollow the steps wit
 flag=1
 while flag==True:
     print("Please select your car brand:\n(You can enter 'quit' to exit or 'skip' tp pass this criteria")
-    # print the Brand in stocklist with no repetions
+
     csv_to_dirc()
+    
+     # print the Brand in stocklist with no repetions
     brand=[]
     while True:
         for item in stocklist:
