@@ -123,6 +123,7 @@ while flag==True:
             else:
                 in_wishlist=1
                 m=look_wishlist()
+                n=len(wishlist)+1
             break
         elif a not in brand:
             print("\nPlease enter a valid option!")
@@ -170,12 +171,19 @@ while flag==True:
         if wishlist==[]:
             answer=input("\nDo you want to:\n'save' or 'choose' any of the cars above?\n('quit' to exit, 'again' to choose car again)\n")
         if wishlist!=[]:
-            answer=input("\nDo you want to:\n'save' or 'choose' any of the cars above?\n('quit' to exit, 'again' to choose car again, or 'look' to see wishlist\n")
+            answer=input("\nDo you want to:\n'save' or 'choose' any of the cars above?\n('quit' to exit, 'again' to choose car again, or 'look' to see wishlist)\n")
         if answer=='save':
             for i in range(n-1):
                 print(i+1,' ' ,end='')
-            wishlist.append(stocklist[int(input("which one you wanna save?\n"))-1])
-            wishlist=[dict(t) for t in set([tuple(d.items()) for d in wishlist])] # remove potential duplicates 
+            while True:    
+                try:
+                    wishlist.append(stocklist[int(input("which one you wanna save?\n"))-1])
+                except:
+                    print("\nPlese enter valid number!")
+                    continue
+                else:
+                    wishlist=[dict(t) for t in set([tuple(d.items()) for d in wishlist])] # remove potential duplicates 
+                break
             break
         elif answer=='choose':
             flag=0      
@@ -200,12 +208,28 @@ while flag==True:
 if in_wishlist==False:   
     for i in range(n-1):
         print(i+1,' ' ,end='')
-    car_chosen=stocklist[int(input("\nwhich one you wanna choose?"))-1]
-
+    while True:
+        try:
+            car_chosen=stocklist[int(input("\nwhich one you wanna choose?"))-1]
+        except:
+            print("Please enter valid Number!")
+            continue
+        else:
+            break
+        
+    
 if in_wishlist==True:
     for i in range(m-1):
         print(i+1,' ' ,end='')
-    car_chosen=wishlist[int(input("\nwhich one you wanna choose?"))-1]
+    while True:
+        try:
+            car_chosen=wishlist[int(input("\nwhich one you wanna choose?"))-1]
+        except:
+            print("\nPlease enter valid Number!")
+            continue
+        else:
+            break
+
 
 
 print(car_chosen)
