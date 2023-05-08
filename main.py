@@ -1,8 +1,7 @@
 import csv
 
+
 # import csv data as dicts in a list
-stocklist=[] 
-wishlist=[]
 def csv_to_dirc():
     stocklist.clear()
     with open('carlist.csv') as f:
@@ -35,13 +34,20 @@ def filter_number_range(word1,word2,criteria,list):
             exit()
 
         elif a =='look':
-            in_wishlist=1
-            m =look_wishlist()
-            flag1=0
+            if wishlist==[]:
+                print('\nWishlist is empty!')
+                continue
+            else:
+                in_wishlist=1
+                m =look_wishlist()
+                flag1=0
             break
 
         elif str.isdigit(a)==False:
-            print("\nPlease enter a number! 'quit' to exit or 'skip' tp pass or 'look' to wishlist")
+            if wishlist==[]:
+                print("\nPlease enter a number! 'quit' to exit or 'skip' to pass")
+            if wishlist !=[]:
+                print("\nPlease enter a number! 'quit' to exit or 'skip' to pass or 'look' to wishlist")
             continue
         else:
             a=int(a)
@@ -53,14 +59,21 @@ def filter_number_range(word1,word2,criteria,list):
         elif b == 'quit':
             exit()
         
-        elif a =='look':
-            in_wishlist=1
-            m =look_wishlist()
-            flag1=0
+        elif b =='look':
+            if wishlist==[]:
+                print('\nWishlist is empty!')
+                continue
+            else:
+                in_wishlist=1
+                m =look_wishlist()
+                flag1=0
             break
 
         elif str.isdigit(b)==False:
-            print("\nPlease enter a number! 'quit' to exit or 'skip' tp pass or 'look' to wishlist")
+            if wishlist==[]:
+                print("\nPlease enter a number! 'quit' to exit or 'skip' to pass")
+            if wishlist !=[]:
+                print("\nPlease enter a number! 'quit' to exit or 'skip' to pass or 'look' to wishlist")
             continue
         else:
             b=int(b)
@@ -75,19 +88,25 @@ def filter_number_range(word1,word2,criteria,list):
         break
 
 
-print("G'day! Welcome to our 'Save Your Money' car seller!\nFollow the steps with us you will find your dream car!")
-flag=1
-# filter the Brand
+stocklist=[] 
+wishlist=[]
 
+print("G'day! Welcome to our 'Save Your Money' car seller!\nFollow the steps with us you will find your dream car!")
+
+# filter the Brand
+flag=1
 while flag==True:
     in_wishlist=0
-    print("\nPlease select your car brand:\n(You can enter 'quit' to exit or 'skip' to pass or 'look' to wishlist ")
 
-    csv_to_dirc()
-    
      # print the Brand in stocklist with no repetions
-    brand=[]
     while True:
+        brand=[]
+        if wishlist==[]:
+            print("\nPlease select your car brand:\n('quit' to exit, or 'skip' to pass)")
+            csv_to_dirc()
+        if wishlist !=[]:
+            print("\nPlease select your car brand:\n('quit' to exit, or 'skip' to pass, or 'look' to wishlist) ")
+            csv_to_dirc()
         for item in stocklist:
             if item['Brand'] not in brand:
                 print (item['Brand'])
@@ -98,11 +117,15 @@ while flag==True:
         elif a == 'quit':
             exit()
         elif a =='look':
-            in_wishlist=1
-            m=look_wishlist()
+            if wishlist ==[]:
+                print("\nWishlist is empty!")
+                continue
+            else:
+                in_wishlist=1
+                m=look_wishlist()
             break
         elif a not in brand:
-            print("\nPlease enter a valid option! 'quit' to exit or 'skip' to pass or 'look' to wishlist")
+            print("\nPlease enter a valid option!")
             continue
         else:
             stocklist=[x for x in stocklist if a == x['Brand']]
@@ -111,16 +134,25 @@ while flag==True:
     while in_wishlist !=1:
         while True:
             flag1=1
-            # filter the Year
-            filter_number_range("\nPlease enter the min year of your car:\n('quit' to exit or 'skip' to pass or 'look' to wishlist)\n","\nPlease enter the max year of your car:\n('quit' to exit or 'skip' to pass or 'look' to wishlist)\n",'Year',stocklist)
+            # won't give user guide to enter 'look' if wishlist is empty
+            if wishlist==[]: 
+                # filter the Year
+                filter_number_range("\nPlease enter the min year of your car:\n('quit' to exit or 'skip' to pass)\n","\nPlease enter the max year of your car:\n('quit' to exit or 'skip' to pass)\n",'Year',stocklist)
+                # filter the KM
+                filter_number_range("\nPlease enter the min KM of your car:\n('quit' to exit or 'skip' to pass)\n","\nPlease enter the max KM of your car:\n('quit' to exit or 'skip' to pass)\n",'KM',stocklist)
+                # filter the Price
+                filter_number_range("\nPlease enter the min price of your car:\n('quit' to exit or 'skip' to pass)\n","\nPlease enter the max price of your car:\n('quit' to exit or 'skip' to pass)\n",'Price',stocklist)
+                
+            if wishlist !=[]:
+                # filter the Year
+                filter_number_range("\nPlease enter the min year of your car:\n('quit' to exit or 'skip' to pass or 'look' to wishlist)\n","\nPlease enter the max year of your car:\n('quit' to exit or 'skip' to pass or 'look' to wishlist)\n",'Year',stocklist)
+                # filter the KM
+                filter_number_range("\nPlease enter the min KM of your car:\n('quit' to exit or 'skip' to pass or 'look' to wishlist)\n","\nPlease enter the max KM of your car:\n('quit' to exit or 'skip' to pass or 'look' to wishlist)\n",'KM',stocklist)
+                # filter the Price
+                filter_number_range("\nPlease enter the min price of your car:\n('quit' to exit or 'skip' to pass or 'look' to wishlist)\n","\nPlease enter the max price of your car:\n('quit' to exit or 'skip' to pass or 'look' to wishlist)\n",'Price',stocklist)
 
-            # filter the KM
-            filter_number_range("\nPlease enter the min KM of your car:\n('quit' to exit or 'skip' to pass or 'look' to wishlist)\n","\nPlease enter the max KM of your car:\n('quit' to exit or 'skip' to pass or 'look' to wishlist)\n",'KM',stocklist)
 
-            # filter the Price
-            filter_number_range("\nPlease enter the min price of your car:\n('quit' to exit or 'skip' to pass or 'look' to wishlist)\n","\nPlease enter the max price of your car:\n('quit' to exit or 'skip' to pass or 'look' to wishlist)\n",'Price',stocklist)
             if flag1==True:
-                # print(*stocklist, sep="\n")
                 print("\nWe have chosen the cars below for you!\n")
                 n=1
                 for i in stocklist: 
@@ -128,11 +160,17 @@ while flag==True:
                     n+=1
                     for key,value in i.items():
                         print(key,":",value,)
+            
+            if flag1==False:
+                n=len(wishlist)+1
             break
         break
-# user decide to save, choose or select again.
+    #  user decide to save, choose or select again.
     while True:
-        answer=input("\nDo you want to:\n'save' or 'choose' any of the cars?\nor you can type 'quit' to exit, 'again' to choose car again,'look' to see wishlist\n")
+        if wishlist==[]:
+            answer=input("\nDo you want to:\n'save' or 'choose' any of the cars above?\n('quit' to exit, 'again' to choose car again)\n")
+        if wishlist!=[]:
+            answer=input("\nDo you want to:\n'save' or 'choose' any of the cars above?\n('quit' to exit, 'again' to choose car again, or 'look' to see wishlist\n")
         if answer=='save':
             for i in range(n-1):
                 print(i+1,' ' ,end='')
@@ -143,9 +181,13 @@ while flag==True:
             flag=0      
             break
         elif answer=='look':
-            in_wishlist=1
-            m=look_wishlist()
-            continue
+            if wishlist==[]:
+                print("\nWishlist is empty!")
+                continue
+            if wishlist !=[]:
+                in_wishlist=1
+                m=look_wishlist()
+                continue
         elif answer=='quit':
             exit()
         elif answer=='again':
