@@ -12,7 +12,7 @@ def print_brand(stocklist):
             brand.append(item['Brand'])
     return brand
 
-def test1():
+def test_print_brand():
     assert  print_brand([{'Brand':'a','Year':'b'},
            {'Brand':'a','Year':'b'},
            {'Brand':'c','Year':'d'},
@@ -24,5 +24,4 @@ def test1():
            ])==[
                'a','c','e','g'
                ]
-
-
+    

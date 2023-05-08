@@ -1,4 +1,4 @@
-import csv
+import csv,loan_calculator
 
 
 # import csv data as dicts in a list
@@ -25,7 +25,7 @@ def filter_number_range(word1,word2,criteria,list):
     global in_wishlist
     global m
     global flag1
-    while flag1==True:
+    while flag1:
         a=input(word1)
         if a == 'skip':
             a=0
@@ -95,7 +95,7 @@ print("G'day! Welcome to our 'Save Your Money' car seller!\nFollow the steps wit
 
 # filter the Brand
 flag=1
-while flag==True:
+while flag:
     in_wishlist=0
 
      # print the Brand in stocklist with no repetions
@@ -153,7 +153,7 @@ while flag==True:
                 filter_number_range("\nPlease enter the min price of your car:\n('quit' to exit or 'skip' to pass or 'look' to wishlist)\n","\nPlease enter the max price of your car:\n('quit' to exit or 'skip' to pass or 'look' to wishlist)\n",'Price',stocklist)
 
 
-            if flag1==True:
+            if flag1:
                 print("\nWe have chosen the cars below for you!\n")
                 n=1
                 for i in stocklist: 
@@ -162,7 +162,7 @@ while flag==True:
                     for key,value in i.items():
                         print(key,":",value,)
             
-            if flag1==False:
+            if not flag1:
                 n=len(wishlist)+1
             break
         break
@@ -231,10 +231,47 @@ if in_wishlist==True:
             break
 
 
+# print(car_chosen)
 
-print(car_chosen)
+print("\nThanks for choosing the car!\n")
+for k,v in car_chosen.items():
+    print(k,':',v)
+
+if car_chosen['Discount'] !=0:
+    print(f"\nAnd you have {car_chosen['Discount']}% of the product!")
+    Price=int(car_chosen['Price'])*((100-int(car_chosen['Discount']))*0.01)
 
 
+while True:
+    offer_answer=input("Would you like to see our loan offer? 'Yes' or 'No'")
+    if offer_answer == "Yes":
+        flag3=1
+        break
+    if offer_answer == "No":
+        flag3=0
+        break
+    else:
+        print("Please enter 'Yes' or 'No'!\n")
+
+
+while flag3:
+    while True:
+        try:
+            Term=int(input("Please enter the term(1-5 years) you want to accept.\n"))
+            if Term>5 or Term<1:
+                raise ValueError
+            if Term=="quit":
+                exit()
+        except:
+            print("Please enter a valid number between 1 to 5 ! ('quit' to exit)")
+        else:
+            print(f"Your monthly payment is ${loan_calculator.monthly_payment_calculate(Price,0.07,Term)}!")
+            break
+    flag3=0
+
+
+
+loan_calculator.get_loan_information(Price,.07,Term)
 
 
 
