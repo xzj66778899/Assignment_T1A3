@@ -1,5 +1,6 @@
-import csv,loan_calculator
+import csv,datetime,loan_calculator
 
+Interest_rate =1.07
 
 # import csv data as dicts in a list
 def csv_to_dirc():
@@ -254,6 +255,7 @@ while True:
         print("Please enter 'Yes' or 'No'!\n")
 
 
+# loan offer
 while flag3:
     while True:
         try:
@@ -265,13 +267,15 @@ while flag3:
         except:
             print("Please enter a valid number between 1 to 5 ! ('quit' to exit)")
         else:
-            print(f"Your monthly payment is ${loan_calculator.monthly_payment_calculate(Price,0.07,Term)}!")
+            print(f"Your monthly payment is ${loan_calculator.monthly_payment_calculate(Price,Interest_rate,Term)}!")
             break
     flag3=0
 
 
 
-loan_calculator.get_loan_information(Price,.07,Term)
 
 
+now=datetime.datetime.now()
+Date = now.strftime('20%y-%m-%d')
 
+loan_calculator.loan_summary(Price,Interest_rate,Term,Date)
