@@ -269,18 +269,18 @@ Date = now.strftime('20%y-%m-%d')
 while flag3==1:
     flag4=1
     while flag4:
+        term=input("Please enter the term(1-5 years) you want to have. ('quit' to exit)\n")
+        if term=='quit':
+            print("Sorry to see you leave, you can run this program again to choose a car for you.")
+            exit()
         try:
-            Term=input("Please enter the term(1-5 years) you want to have. ('quit' to exit)\n")
-            if int(Term)>5 or int(Term)<1:
-                raise ValueError
-            if Term=="quit":
-                print("Sorry to see you leave, you can run this program again to choose a car for you.")
-                exit()
+            1<=int(term)<=5 is True
         except:
             print("Please enter a valid number between 1 to 5 ! ('quit' to exit)")
             continue
         else:
-            print(f"Your monthly payment is ${round((loan_calculator.loan_summary(Price,Interest_rate,Term,Date)[1])/(Term*12)),2}!")
+            Term=int(term)
+            print(f"Your monthly payment is ${round((loan_calculator.loan_summary(Price,Interest_rate,Term,Date)[1])/(Term*12))}!")
             offer_accept=input('Do you want to accept this offer? (y/n):')
             if offer_accept=="y":
                 pass
@@ -304,7 +304,7 @@ while flag3==1:
 
 
 if flag3=="order_with_loan":
-    print("Here's your purchase order! Please find in TXT file")
+    print("Here's your purchase order! Please find in TXT file!")
 # output purchase order to txt with loan information
     with open('purchase_order.txt','w') as f:
         print('Pruchase Order\n\ncar details:',file=f)
@@ -312,11 +312,11 @@ if flag3=="order_with_loan":
             print(k,':',v,file=f)
 
         amount=loan_calculator.loan_summary(Price,Interest_rate,Term,Date)[1]
-        interest=loan_calculator.loan_summary(Price,Interest_rate,Term,Date)[2]
+        interest=loan_calculator.loan_summary(Price,Interest_rate,Term,Date)[3]
         monthly_payment=round((loan_calculator.loan_summary(Price,Interest_rate,Term,Date)[1])/(12*Term),2)
 
-        print(f"\n\nloan amount:{amount}\nterm:{Term} years\ninterest:{interest}\ninterest rate:{Interest_rate}\nmonthly payment:{monthly_payment}\n\npurchase date:{Date}\nsales:online",file=f)
-    print("Thanks for chooing 'Save Your Money' car dealer! Have a nice day and looking forward to see you again!")
+        print(f"\n\nloan amount:${amount}\nterm: {Term} years\ninterest:${interest}\ninterest rate:{Interest_rate}\nmonthly payment:${monthly_payment}\n\npurchase date:{Date}\nsales: online",file=f)
+    print("\nThanks for chooing 'Save Your Money' car dealer! Have a nice day and looking forward to see you again!\n")
 
 
 elif flag3==0:
