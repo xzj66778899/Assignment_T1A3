@@ -32,6 +32,7 @@ def filter_number_range(word1,word2,criteria,list):
             a=0
             pass
         elif a == 'quit':
+            print("Sorry to see you leave, you can run this program again to choose a car for you.")
             exit()
 
         elif a =='look':
@@ -58,6 +59,7 @@ def filter_number_range(word1,word2,criteria,list):
             b=9999999999999999999
             pass
         elif b == 'quit':
+            print("Sorry to see you leave, you can run this program again to choose a car for you.")
             exit()
         
         elif b =='look':
@@ -116,6 +118,7 @@ while flag:
         if a == 'skip':
             pass
         elif a == 'quit':
+            print("Sorry to see you leave, you can run this program again to choose a car for you.")
             exit()
         elif a =='look':
             if wishlist ==[]:
@@ -198,6 +201,7 @@ while flag:
                 m=look_wishlist()
                 continue
         elif answer=='quit':
+            print("Sorry to see you leave, you can run this program again to choose a car for you.")
             exit()
         elif answer=='again':
             break
@@ -238,13 +242,16 @@ print("\nThanks for choosing the car!\n")
 for k,v in car_chosen.items():
     print(k,':',v)
 
-if car_chosen['Discount'] !=0:
+if int(car_chosen['Discount']) !=0:
     print(f"\nAnd you have {car_chosen['Discount']}% of the product!")
     Price=int(car_chosen['Price'])*((100-int(car_chosen['Discount']))*0.01)
 
+if int(car_chosen['Discount']) ==0:
+    Price=int(car_chosen['Price'])
+
 
 while True:
-    offer_answer=input("Would you like to see our loan offer? 'Yes' or 'No'")
+    offer_answer=input("\nWould you like to see our loan offer? 'Yes' or 'No'\n")
     if offer_answer == "Yes":
         flag3=1
         break
@@ -256,26 +263,68 @@ while True:
 
 
 # loan offer
-while flag3:
-    while True:
-        try:
-            Term=int(input("Please enter the term(1-5 years) you want to accept.\n"))
-            if Term>5 or Term<1:
-                raise ValueError
-            if Term=="quit":
-                exit()
-        except:
-            print("Please enter a valid number between 1 to 5 ! ('quit' to exit)")
-        else:
-            print(f"Your monthly payment is ${loan_calculator.monthly_payment_calculate(Price,Interest_rate,Term)}!")
-            break
-    flag3=0
-
-
-
-
-
 now=datetime.datetime.now()
 Date = now.strftime('20%y-%m-%d')
 
-loan_calculator.loan_summary(Price,Interest_rate,Term,Date)
+while flag3==1:
+    flag4=1
+    while flag4:
+        try:
+            Term=input("Please enter the term(1-5 years) you want to have. ('quit' to exit)\n")
+            if int(Term)>5 or int(Term)<1:
+                raise ValueError
+            if Term=="quit":
+                print("Sorry to see you leave, you can run this program again to choose a car for you.")
+                exit()
+        except:
+            print("Please enter a valid number between 1 to 5 ! ('quit' to exit)")
+            continue
+        else:
+            print(f"Your monthly payment is ${round((loan_calculator.loan_summary(Price,Interest_rate,Term,Date)[1])/(Term*12)),2}!")
+            offer_accept=input('Do you want to accept this offer? (y/n):')
+            if offer_accept=="y":
+                pass
+                break
+            if offer_accept=="n":
+                print("You can choose another term")
+                continue
+
+    while True:
+        complete=input("Please enter 'complete' to see the purchase order ('quit' to exit)\n")
+        if complete=="complete":
+            flag4=0
+            break
+        elif complete=="quit":
+             print("Sorry to see you leave, you can run this program again to choose a car for you.")
+             exit()
+        else:
+            print('Please enter valid value!')
+            continue
+    flag3="order_with_loan"
+
+
+if flag3=="order_with_loan":
+    print("Here's your purchase order! Please find in TXT file")
+# output purchase order to txt with loan information
+    with open('purchase_order.txt','w') as f:
+        print('Pruchase Order\n\ncar details:',file=f)
+        for k,v in car_chosen.items():
+            print(k,':',v,file=f)
+
+        amount=loan_calculator.loan_summary(Price,Interest_rate,Term,Date)[1]
+        interest=loan_calculator.loan_summary(Price,Interest_rate,Term,Date)[2]
+        monthly_payment=round((loan_calculator.loan_summary(Price,Interest_rate,Term,Date)[1])/(12*Term),2)
+
+        print(f"\n\nloan amount:{amount}\nterm:{Term} years\ninterest:{interest}\ninterest rate:{Interest_rate}\nmonthly payment:{monthly_payment}\n\npurchase date:{Date}\nsales:online",file=f)
+    print("Thanks for chooing 'Save Your Money' car dealer! Have a nice day and looking forward to see you again!")
+
+
+elif flag3==0:
+    print("Here's your purchase order! Please find in TXT file!")
+    # output purchase order to txt without loan information
+    with open('purchase_order.txt','w') as f:
+        print('Pruchase Order\n\ncar details:',file=f)
+        for k,v in car_chosen.items():
+            print(k,':',v,file=f)
+        print(f"purchase date:{Date}\nsales:online",file=f)
+    print("\nThanks for chooing 'Save Your Money' car dealer! Have a nice day and looking forward to see you again!\n")
