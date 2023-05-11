@@ -1,13 +1,13 @@
-# Git repo link
+# 1. Git repo link
 https://github.com/xzj66778899/Assignment_T1A3.gi
 <br>
 <br>
 
-# Code style guide
+# 2. Code style guide
 ‘Style Guide for Python Code’ https://peps.python.org/pep-0008/  
 <br>
 
-# APP features:
+# 3. APP features:
 ## Feature 1:
 As a sales, you can edit the carlist in the CSV file to let the buyers to choose.
 Now there're 50 cars in the stock. Import the carlist in CSV format. 
@@ -31,7 +31,9 @@ In any circumstance if wrong letters are input, APP will ask buyer to input agai
 Users can enter 'quit' to exit the program at most of the input points.  
 User can call wishlist out at most of the input points.
 <br>
-# Implementation plan:
+<br>
+
+# 4. Implementation plan:
 ### 1. Lists of objects:
 #### 1.1 feature 1
 ##### checklist : 
@@ -84,8 +86,26 @@ launch: 14/05/2023
     
 Please refer to this Trello link to find more schedule control information: https://trello.com/b/wQstnYxO/assignmentt1a3
 
+<br>
 
+# 5. How to install the application
+Run code './my_wrapper.sh' in the terminal. The app will create a virtual invironment and install the needed pip packages automatically. The app will then launch immediately.  
+(If get permisson denied, please see 'troubleshooting')
+<br>
+<br>
+# 6. Dependencies needed
+The application needs several pip packages which stored in the 'requirements.txt' file. After install the application the packages will be installed together.
 
+<br>
+
+# 7. Troubleshooting
+1. **Problem**: Error occur when installing application :"Python not installed. Enable to run the application, please refer to https://installpython3.com/ to install Python.".
+
+   **Solution**: Install the latest python in the system.
+
+2. **Problem**: When run the './my_wrapper.sh' command, get the error 'Permission denied.
+
+   **Solution**: run 'chmod +x my_wrapper.sh' in the current directory to get the permission.
 
 
 
