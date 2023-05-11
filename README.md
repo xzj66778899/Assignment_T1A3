@@ -17,19 +17,20 @@ The result is to output a purchase order with information such as 'car details',
 The sold car details will be put in a car sold list.  
 <br>
 ## Feature 2:
+This is the basic function of the application, need first priority.  
 As a buyer, you can choose or skip any criteria within 'Type', 'Brand', 'Year', 'KM' and 'Price' to find the right car.  
 
 When cars have been selected, you can either save it to built-in wishlist, select again, or choose it to the next step. 
 <br>
 
 ## Feature 3:
-After a car has been 'chosen' by the buyer, system will ask the user whether to consider a loan offer.   
+After a car has been 'chosen' by the buyer, system will ask the user whether to consider a loan offer. (medium priority)  
 If the buyer has interest, system will show a monthly payment according to the term chosen. Buyer can accept offer or reject the offer.  
 <br>
 ## General feature:
 In any circumstance if wrong letters are input, APP will ask buyer to input again.  
 Users can enter 'quit' to exit the program at most of the input points.  
-User can call wishlist out at most of the input points.
+User can call wishlist out at most of the input points.(lowest priority)
 <br>
 <br>
 
