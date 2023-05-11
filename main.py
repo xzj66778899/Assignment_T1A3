@@ -168,7 +168,7 @@ while flag:
                                     'Price',stocklist)
 
             if flag1:
-                print("\nWe have chosen the cars below for you!\n")
+                print("\nWe have selected the cars below for you!\n")
                 n = 1
                 for i in stocklist: 
                     print(n,":")
@@ -225,7 +225,7 @@ if in_wishlist == False:
         print(i + 1,' ' ,end='')
     while True:
         try:
-            car_chosen=stocklist[int(input("\nwhich one you wanna choose?"))-1]
+            car_chosen=stocklist[int(input("\nwhich one you wanna choose?\n"))-1]
         except:
             print("Please enter valid Number!")
             continue
@@ -237,7 +237,7 @@ if in_wishlist == True:
         print(i+1, ' ', end = '')
     while True:
         try:
-            car_chosen = wishlist[int(input("\nwhich one you wanna choose?"))-1]
+            car_chosen = wishlist[int(input("\nwhich one you wanna choose?\n"))-1]
         except:
             print("\nPlease enter valid Number!")
             continue
@@ -287,8 +287,7 @@ while flag3 == 1:
             continue
         else:
             Term = int(term)
-            print(f"Your monthly payment is \
-                  ${round((loan_calculator.loan_summary(Price, Interest_rate, Term,Date)[1])/(Term*12))}!")
+            print(f"Your monthly payment is ${round((loan_calculator.loan_summary(Price, Interest_rate, Term,Date)[1])/(Term*12))}!")
             offer_accept = input('Do you want to accept this offer? (y/n):')
             if offer_accept == "y":
                 pass

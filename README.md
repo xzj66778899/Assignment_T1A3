@@ -9,25 +9,27 @@ https://github.com/xzj66778899/Assignment_T1A3.gi
 
 # APP features:
 ## Feature 1:
-As a sales, you can also edit the carlist in the CSV file to let the buyers to choose.
-Now there're 50 cars in the stock.Import the carlist in CSV format. 
+As a sales, you can edit the carlist in the CSV file to let the buyers to choose.
+Now there're 50 cars in the stock. Import the carlist in CSV format. 
 
-The result is to output a purchase order with information such as 'car details', 'loan details' and 'sales date' in TXT format, and the stock list will automatically updated when an order is completed.  
+The result is to output a purchase order with information such as 'car details', 'loan details' and 'sales date' in TXT format, and the stock list will automatically be updated when an order is completed.  
 
-The sold car details will bu put in car_sold list.  
+The sold car details will be put in a car sold list.  
 <br>
 ## Feature 2:
 As a buyer, you can choose or skip any criteria within 'Type', 'Brand', 'Year', 'KM' and 'Price' to find the right car.  
 
-When cars have been selected, you can choose either save it to built-in wishlist for later review, or to select again, or to the next step.  
+When cars have been selected, you can either save it to built-in wishlist, select again, or choose it to the next step. 
 <br>
+
 ## Feature 3:
 After a car has been 'chosen' by the buyer, system will ask the user whether to consider a loan offer.   
 If the buyer has interest, system will show a monthly payment according to the term chosen. Buyer can accept offer or reject the offer.  
 <br>
 ## General feature:
 In any circumstance if wrong letters are input, APP will ask buyer to input again.  
-Users can enter 'quit' to exit the program at most of the input points.    
+Users can enter 'quit' to exit the program at most of the input points.  
+User can call wishlist out at most of the input points.
 <br>
 # Implementation plan:
 ### 1. Lists of objects:
