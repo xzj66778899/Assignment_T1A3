@@ -1,5 +1,7 @@
 # 1. Git repo link
-https://github.com/xzj66778899/Assignment_T1A3.gi
+https://github.com/xzj66778899/Assignment_T1A3.gi  
+## prestation link:   
+https://www.youtube.com/watch?v=paI3nlu6er8
 <br>
 <br>
 
